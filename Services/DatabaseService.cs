@@ -7,8 +7,12 @@ namespace AppLimit.Services;
 public static class DatabaseService
 {
     private static readonly string DbPath =
-        Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "AppLimit.db");
-
+    Path.Combine(
+        Environment.GetFolderPath(
+            Environment.SpecialFolder.LocalApplicationData),
+        "AppLimiter",
+        "AppLimit.db");
+        
     private static readonly string ConnectionString =
         $"Data Source={DbPath}";
 

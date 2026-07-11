@@ -9,7 +9,8 @@
         Foreground="White"
         FontFamily="Segoe UI"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="NoResize">
+        ResizeMode="NoResize"
+        Icon="/Assets/applimit.ico">
 
         <Window.Resources>
 
@@ -293,7 +294,7 @@
 
                                         <!-- Limit -->
                                         <TextBlock Style="{StaticResource FieldLabel}"
-                                                   Text="BATAS BERMAIN (MENIT)"/>
+                                                   Text="BATAS PENGGUNAAN (MENIT)"/>
                                         <TextBox
                                                 Margin="0,8,0,20"
                                                 Width="140"

@@ -1,0 +1,2 @@
+D:\Project\PlayLimit\bin\Release\net10.0-windows\win-x64\publish\PlayLimit.pdb
+D:\Project\PlayLimit\bin\Release\net10.0-windows\win-x64\publish\PlayLimit.exe

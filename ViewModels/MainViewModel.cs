@@ -7,6 +7,7 @@ using CommunityToolkit.Mvvm.Input;
 using System.Windows;
 using System.Windows.Threading;
 using AppLimit.Managers;
+using System.Diagnostics;
 
 namespace AppLimit.ViewModels;
 
