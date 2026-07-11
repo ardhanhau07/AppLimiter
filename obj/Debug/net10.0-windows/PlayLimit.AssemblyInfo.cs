@@ -10,12 +10,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("AppLimit")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("PlayLimit")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d0d18d24fb73664dc69a02b6a5e2afd9bfb89b5f")]
-[assembly: System.Reflection.AssemblyProductAttribute("AppLimit")]
-[assembly: System.Reflection.AssemblyTitleAttribute("AppLimit")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+54ef7eda51d74278f354f077c3c6656fc0038598")]
+[assembly: System.Reflection.AssemblyProductAttribute("PlayLimit")]
+[assembly: System.Reflection.AssemblyTitleAttribute("PlayLimit")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 [assembly: System.Runtime.Versioning.TargetPlatformAttribute("Windows7.0")]
 [assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("Windows7.0")]

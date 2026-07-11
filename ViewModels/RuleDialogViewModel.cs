@@ -14,6 +14,9 @@ public partial class RuleDialogViewModel : ObservableObject
     private string name = "";
 
     [ObservableProperty]
+    private int warningSeconds = 30;
+
+    [ObservableProperty]
     private string exePath = "";
 
     [ObservableProperty]
@@ -37,6 +40,7 @@ public partial class RuleDialogViewModel : ObservableObject
         ProcessName = rule.ProcessName;
         TimeLimit = rule.TimeLimit;
         Enabled = rule.Enabled;
+        warningSeconds = rule.WarningSeconds;
     }
 
     [RelayCommand]
@@ -69,6 +73,22 @@ public partial class RuleDialogViewModel : ObservableObject
             return;
         }
 
+        if (warningSeconds < 0)
+        {
+            NotificationService.ShowWarning(
+                "Durasi peringatan tidak boleh kurang dari 0 detik.");
+
+            return;
+        }
+
+        if (warningSeconds >= TimeLimit * 60)
+        {
+            NotificationService.ShowWarning(
+                "Durasi peringatan harus lebih kecil dari batas bermain.");
+
+            return;
+        }
+
         if (editingRule == null)
         {
             DatabaseService.AddRule(new AppRule
@@ -77,6 +97,7 @@ public partial class RuleDialogViewModel : ObservableObject
                 ExePath = ExePath,
                 ProcessName = ProcessName,
                 TimeLimit = TimeLimit,
+                WarningSeconds = warningSeconds,
                 Enabled = Enabled
             });
         }
@@ -86,6 +107,7 @@ public partial class RuleDialogViewModel : ObservableObject
             editingRule.ExePath = ExePath;
             editingRule.ProcessName = ProcessName;
             editingRule.TimeLimit = TimeLimit;
+            editingRule.WarningSeconds = warningSeconds;
             editingRule.Enabled = Enabled;
 
             DatabaseService.UpdateRule(editingRule);

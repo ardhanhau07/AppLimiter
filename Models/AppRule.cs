@@ -38,9 +38,9 @@ public partial class AppRule : ObservableObject
     // Digunakan untuk mendeteksi saat melewati threshold
     public int PreviousRemaining { get; set; } = int.MaxValue;
 
-    public bool Warning5MinutesShown { get; set; }
+    public int WarningSeconds { get; set; } = 30;
 
-    public bool Warning1MinuteShown { get; set; }
+    public bool WarningShown { get; set; }
 
     public bool Closing { get; set; }
     partial void OnEnabledChanged(bool value)

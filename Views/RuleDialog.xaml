@@ -4,278 +4,365 @@
         Title="AppLimit"
         Width="520"
         MinHeight="700"
-        Height="740"
+        Height="770"
         Background="#14141F"
         Foreground="White"
         FontFamily="Segoe UI"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
 
-    <Window.Resources>
+        <Window.Resources>
 
-        <!-- ===================== BRUSHES ===================== -->
+                <!-- ===================== BRUSHES ===================== -->
 
-        <LinearGradientBrush x:Key="AccentGradient" StartPoint="0,0" EndPoint="1,1">
-            <GradientStop Color="#6366F1" Offset="0"/>
-            <GradientStop Color="#8B5CF6" Offset="1"/>
-        </LinearGradientBrush>
+                <LinearGradientBrush x:Key="AccentGradient"
+                                     StartPoint="0,0"
+                                     EndPoint="1,1">
+                        <GradientStop Color="#6366F1"
+                                      Offset="0"/>
+                        <GradientStop Color="#8B5CF6"
+                                      Offset="1"/>
+                </LinearGradientBrush>
 
-        <LinearGradientBrush x:Key="HeaderGradient" StartPoint="0,0" EndPoint="1,0">
-            <GradientStop Color="#4F46E5" Offset="0"/>
-            <GradientStop Color="#7C3AED" Offset="1"/>
-        </LinearGradientBrush>
+                <LinearGradientBrush x:Key="HeaderGradient"
+                                     StartPoint="0,0"
+                                     EndPoint="1,0">
+                        <GradientStop Color="#4F46E5"
+                                      Offset="0"/>
+                        <GradientStop Color="#7C3AED"
+                                      Offset="1"/>
+                </LinearGradientBrush>
 
-        <SolidColorBrush x:Key="CardBrush" Color="#23233A"/>
-        <SolidColorBrush x:Key="FieldBrush" Color="#1B1B2E"/>
-        <SolidColorBrush x:Key="FieldBorder" Color="#35354D"/>
-        <SolidColorBrush x:Key="FieldBorderFocus" Color="#8B5CF6"/>
-        <SolidColorBrush x:Key="SecondaryBrush" Color="#33334D"/>
+                <SolidColorBrush x:Key="CardBrush"
+                                 Color="#23233A"/>
+                <SolidColorBrush x:Key="FieldBrush"
+                                 Color="#1B1B2E"/>
+                <SolidColorBrush x:Key="FieldBorder"
+                                 Color="#35354D"/>
+                <SolidColorBrush x:Key="FieldBorderFocus"
+                                 Color="#8B5CF6"/>
+                <SolidColorBrush x:Key="SecondaryBrush"
+                                 Color="#33334D"/>
 
-        <DropShadowEffect x:Key="CardShadow" Color="#000000" Direction="270"
-                           ShadowDepth="6" BlurRadius="18" Opacity="0.35"/>
+                <DropShadowEffect x:Key="CardShadow"
+                                  Color="#000000"
+                                  Direction="270"
+                                  ShadowDepth="6"
+                                  BlurRadius="18"
+                                  Opacity="0.35"/>
 
-        <DropShadowEffect x:Key="HeaderShadow" Color="#4F46E5" Direction="270"
-                           ShadowDepth="0" BlurRadius="26" Opacity="0.5"/>
+                <DropShadowEffect x:Key="HeaderShadow"
+                                  Color="#4F46E5"
+                                  Direction="270"
+                                  ShadowDepth="0"
+                                  BlurRadius="26"
+                                  Opacity="0.5"/>
 
-        <!-- ===================== TEXTBOX STYLE (rounded + focus glow) ===================== -->
+                <!-- ===================== TEXTBOX STYLE (rounded + focus glow) ===================== -->
 
-        <Style x:Key="ModernTextBox" TargetType="TextBox">
-            <Setter Property="Background" Value="{StaticResource FieldBrush}"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="CaretBrush" Value="White"/>
-            <Setter Property="Padding" Value="10,0"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="BorderThickness" Value="1.4"/>
-            <Setter Property="BorderBrush" Value="{StaticResource FieldBorder}"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="TextBox">
-                        <Border x:Name="border"
-                                Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="10">
-                            <ScrollViewer x:Name="PART_ContentHost"
-                                          Margin="{TemplateBinding Padding}"
-                                          VerticalAlignment="Center"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsFocused" Value="True">
-                                <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource FieldBorderFocus}"/>
-                            </Trigger>
-                            <Trigger Property="IsReadOnly" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="#171725"/>
-                                <Setter Property="Foreground" Value="#9CA3AF"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+                <Style x:Key="ModernTextBox"
+                       TargetType="TextBox">
+                        <Setter Property="Background"
+                                Value="{StaticResource FieldBrush}"/>
+                        <Setter Property="Foreground"
+                                Value="White"/>
+                        <Setter Property="CaretBrush"
+                                Value="White"/>
+                        <Setter Property="Padding"
+                                Value="10,0"/>
+                        <Setter Property="VerticalContentAlignment"
+                                Value="Center"/>
+                        <Setter Property="BorderThickness"
+                                Value="1.4"/>
+                        <Setter Property="BorderBrush"
+                                Value="{StaticResource FieldBorder}"/>
+                        <Setter Property="Template">
+                                <Setter.Value>
+                                        <ControlTemplate TargetType="TextBox">
+                                                <Border x:Name="border"
+                                                        Background="{TemplateBinding Background}"
+                                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                                        CornerRadius="10">
+                                                        <ScrollViewer x:Name="PART_ContentHost"
+                                                                      Margin="{TemplateBinding Padding}"
+                                                                      VerticalAlignment="Center"/>
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsFocused"
+                                                                 Value="True">
+                                                                <Setter TargetName="border"
+                                                                        Property="BorderBrush"
+                                                                        Value="{StaticResource FieldBorderFocus}"/>
+                                                        </Trigger>
+                                                        <Trigger Property="IsReadOnly"
+                                                                 Value="True">
+                                                                <Setter TargetName="border"
+                                                                        Property="Background"
+                                                                        Value="#171725"/>
+                                                                <Setter Property="Foreground"
+                                                                        Value="#9CA3AF"/>
+                                                        </Trigger>
+                                                </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                </Setter.Value>
+                        </Setter>
+                </Style>
 
-        <!-- ===================== BUTTON STYLES ===================== -->
+                <!-- ===================== BUTTON STYLES ===================== -->
 
-        <Style x:Key="BasePillButton" TargetType="Button">
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border x:Name="border"
-                                Background="{TemplateBinding Background}"
-                                CornerRadius="10">
-                            <ContentPresenter HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="Opacity" Value="0.88"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="border" Property="Opacity" Value="0.72"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+                <Style x:Key="BasePillButton"
+                       TargetType="Button">
+                        <Setter Property="Foreground"
+                                Value="White"/>
+                        <Setter Property="FontWeight"
+                                Value="SemiBold"/>
+                        <Setter Property="FontSize"
+                                Value="14"/>
+                        <Setter Property="Cursor"
+                                Value="Hand"/>
+                        <Setter Property="BorderThickness"
+                                Value="0"/>
+                        <Setter Property="Template">
+                                <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                                <Border x:Name="border"
+                                                        Background="{TemplateBinding Background}"
+                                                        CornerRadius="10">
+                                                        <ContentPresenter HorizontalAlignment="Center"
+                                                                          VerticalAlignment="Center"/>
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsMouseOver"
+                                                                 Value="True">
+                                                                <Setter TargetName="border"
+                                                                        Property="Opacity"
+                                                                        Value="0.88"/>
+                                                        </Trigger>
+                                                        <Trigger Property="IsPressed"
+                                                                 Value="True">
+                                                                <Setter TargetName="border"
+                                                                        Property="Opacity"
+                                                                        Value="0.72"/>
+                                                        </Trigger>
+                                                </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                </Setter.Value>
+                        </Setter>
+                </Style>
 
-        <Style x:Key="PrimaryPillButton" TargetType="Button" BasedOn="{StaticResource BasePillButton}">
-            <Setter Property="Background" Value="{StaticResource AccentGradient}"/>
-        </Style>
+                <Style x:Key="PrimaryPillButton"
+                       TargetType="Button"
+                       BasedOn="{StaticResource BasePillButton}">
+                        <Setter Property="Background"
+                                Value="{StaticResource AccentGradient}"/>
+                </Style>
 
-        <Style x:Key="SecondaryPillButton" TargetType="Button" BasedOn="{StaticResource BasePillButton}">
-            <Setter Property="Background" Value="{StaticResource SecondaryBrush}"/>
-        </Style>
+                <Style x:Key="SecondaryPillButton"
+                       TargetType="Button"
+                       BasedOn="{StaticResource BasePillButton}">
+                        <Setter Property="Background"
+                                Value="{StaticResource SecondaryBrush}"/>
+                </Style>
 
-        <!-- Label kecil di atas field -->
-        <Style x:Key="FieldLabel" TargetType="TextBlock">
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="FontSize" Value="13"/>
-            <Setter Property="Foreground" Value="#C7C9E0"/>
-        </Style>
+                <!-- Label kecil di atas field -->
+                <Style x:Key="FieldLabel"
+                       TargetType="TextBlock">
+                        <Setter Property="FontWeight"
+                                Value="SemiBold"/>
+                        <Setter Property="FontSize"
+                                Value="13"/>
+                        <Setter Property="Foreground"
+                                Value="#C7C9E0"/>
+                </Style>
 
-    </Window.Resources>
+        </Window.Resources>
 
-    <Grid>
+        <Grid>
 
-        <Grid.Background>
-            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="#14141F" Offset="0"/>
-                <GradientStop Color="#1B1B2F" Offset="0.6"/>
-                <GradientStop Color="#1A1730" Offset="1"/>
-            </LinearGradientBrush>
-        </Grid.Background>
+                <Grid.Background>
+                        <LinearGradientBrush StartPoint="0,0"
+                                             EndPoint="1,1">
+                                <GradientStop Color="#14141F"
+                                              Offset="0"/>
+                                <GradientStop Color="#1B1B2F"
+                                              Offset="0.6"/>
+                                <GradientStop Color="#1A1730"
+                                              Offset="1"/>
+                        </LinearGradientBrush>
+                </Grid.Background>
 
-        <!-- Decorative blurred glow (ganti dengan ImageBrush jika ingin pakai asset gambar,
+                <!-- Decorative blurred glow (ganti dengan ImageBrush jika ingin pakai asset gambar,
              contoh: <Grid.Background><ImageBrush ImageSource="/Assets/bg.png" Stretch="UniformToFill" Opacity="0.25"/></Grid.Background> -->
-        <Canvas IsHitTestVisible="False">
-            <Ellipse Width="260" Height="260" Canvas.Top="-100" Canvas.Right="-90" Fill="#8B5CF6" Opacity="0.16">
-                <Ellipse.Effect>
-                    <BlurEffect Radius="80"/>
-                </Ellipse.Effect>
-            </Ellipse>
-        </Canvas>
+                <Canvas IsHitTestVisible="False">
+                        <Ellipse Width="260"
+                                 Height="260"
+                                 Canvas.Top="-100"
+                                 Canvas.Right="-90"
+                                 Fill="#8B5CF6"
+                                 Opacity="0.16">
+                                <Ellipse.Effect>
+                                        <BlurEffect Radius="80"/>
+                                </Ellipse.Effect>
+                        </Ellipse>
+                </Canvas>
 
-        <Grid Margin="22">
+                <Grid Margin="22">
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+                        <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
 
-            <!-- Header -->
-            <Border
-                Background="{StaticResource HeaderGradient}"
-                CornerRadius="16"
-                Padding="20"
-                Margin="0,0,0,20"
-                Effect="{StaticResource HeaderShadow}">
+                        <!-- Header -->
+                        <Border
+                                Background="{StaticResource HeaderGradient}"
+                                CornerRadius="16"
+                                Padding="20"
+                                Margin="0,0,0,20"
+                                Effect="{StaticResource HeaderShadow}">
 
-                <StackPanel>
+                                <StackPanel>
 
-                    <TextBlock
-                        FontSize="26"
-                        FontWeight="Bold"
-                        Text="🎮 Tambah Aplikasi"/>
+                                        <TextBlock
+                                                FontSize="26"
+                                                FontWeight="Bold"
+                                                Text="🎮 Tambah Aplikasi"/>
 
-                    <TextBlock
-                        Margin="0,6,0,0"
-                        Foreground="#E0E7FF"
-                        FontSize="14"
-                        Text="Tambahkan aplikasi yang ingin dibatasi."/>
+                                        <TextBlock
+                                                Margin="0,6,0,0"
+                                                Foreground="#E0E7FF"
+                                                FontSize="14"
+                                                Text="Tambahkan aplikasi yang ingin dibatasi."/>
 
-                </StackPanel>
+                                </StackPanel>
 
-            </Border>
+                        </Border>
 
-            <!-- Card -->
-            <Border
-                Grid.Row="1"
-                Background="{StaticResource CardBrush}"
-                CornerRadius="16"
-                Padding="24"
-                Effect="{StaticResource CardShadow}">
+                        <!-- Card -->
+                        <Border
+                                Grid.Row="1"
+                                Background="{StaticResource CardBrush}"
+                                CornerRadius="16"
+                                Padding="24"
+                                Effect="{StaticResource CardShadow}">
 
-                <StackPanel>
+                                <StackPanel>
 
-                    <!-- Nama -->
-                    <TextBlock Style="{StaticResource FieldLabel}" Text="NAMA APLIKASI"/>
-                    <TextBox
-                        Margin="0,8,0,18"
-                        Height="38"
-                        Style="{StaticResource ModernTextBox}"
-                        Text="{Binding Name}" />
+                                        <!-- Nama -->
+                                        <TextBlock Style="{StaticResource FieldLabel}"
+                                                   Text="NAMA APLIKASI"/>
+                                        <TextBox
+                                                Margin="0,8,0,18"
+                                                Height="38"
+                                                Style="{StaticResource ModernTextBox}"
+                                                Text="{Binding Name}"/>
 
-                    <!-- EXE -->
-                    <TextBlock Style="{StaticResource FieldLabel}" Text="EXECUTABLE (.EXE)"/>
+                                        <!-- EXE -->
+                                        <TextBlock Style="{StaticResource FieldLabel}"
+                                                   Text="EXECUTABLE (.EXE)"/>
 
-                    <DockPanel Margin="0,8,0,18">
+                                        <DockPanel Margin="0,8,0,18">
 
-                        <Button
-                            Width="90"
-                            Height="38"
-                            DockPanel.Dock="Right"
-                            Margin="10,0,0,0"
-                            Content="📂 Browse"
-                            Style="{StaticResource PrimaryPillButton}"
-                            Command="{Binding BrowseCommand}"/>
+                                                <Button
+                                                        Width="90"
+                                                        Height="38"
+                                                        DockPanel.Dock="Right"
+                                                        Margin="10,0,0,0"
+                                                        Content="📂 Browse"
+                                                        Style="{StaticResource PrimaryPillButton}"
+                                                        Command="{Binding BrowseCommand}"/>
 
-                        <TextBox
-                            Height="38"
-                            IsReadOnly="True"
-                            Style="{StaticResource ModernTextBox}"
-                            Text="{Binding ExePath}"/>
+                                                <TextBox
+                                                        Height="38"
+                                                        IsReadOnly="True"
+                                                        Style="{StaticResource ModernTextBox}"
+                                                        Text="{Binding ExePath}"/>
 
-                    </DockPanel>
+                                        </DockPanel>
 
-                    <!-- Process -->
-                    <TextBlock Style="{StaticResource FieldLabel}" Text="PROCESS NAME"/>
-                    <TextBox
-                        Margin="0,8,0,18"
-                        Height="38"
-                        IsReadOnly="True"
-                        Style="{StaticResource ModernTextBox}"
-                        Text="{Binding ProcessName}"/>
+                                        <!-- Process -->
+                                        <TextBlock Style="{StaticResource FieldLabel}"
+                                                   Text="PROCESS NAME"/>
+                                        <TextBox
+                                                Margin="0,8,0,18"
+                                                Height="38"
+                                                IsReadOnly="True"
+                                                Style="{StaticResource ModernTextBox}"
+                                                Text="{Binding ProcessName}"/>
 
-                    <!-- Limit -->
-                    <TextBlock Style="{StaticResource FieldLabel}" Text="BATAS BERMAIN (MENIT)"/>
-                    <TextBox
-                        Margin="0,8,0,20"
-                        Width="140"
-                        Height="38"
-                        HorizontalAlignment="Left"
-                        Style="{StaticResource ModernTextBox}"
-                        Text="{Binding TimeLimit}"/>
+                                        <!-- Limit -->
+                                        <TextBlock Style="{StaticResource FieldLabel}"
+                                                   Text="BATAS BERMAIN (MENIT)"/>
+                                        <TextBox
+                                                Margin="0,8,0,20"
+                                                Width="140"
+                                                Height="38"
+                                                HorizontalAlignment="Left"
+                                                Style="{StaticResource ModernTextBox}"
+                                                Text="{Binding TimeLimit}"/>
 
-                    <!-- Aktif -->
-                    <Border Background="#1E1E33"
-                            CornerRadius="10"
-                            Padding="12,10"
-                            Margin="0,0,0,26">
-                        <CheckBox
-                            Content="Aktifkan pembatasan"
-                            Foreground="#E5E7EB"
-                            FontWeight="SemiBold"
-                            IsChecked="{Binding Enabled}"/>
-                    </Border>
+                                        <!-- PENGINGAT WAKTU HABIS -->
 
-                    <!-- Tombol -->
-                    <StackPanel
-                        Orientation="Horizontal"
-                        HorizontalAlignment="Right">
+                                        <TextBlock Style="{StaticResource FieldLabel}"
+                                                   Text="PENGINGAT SEBELUM WAKTU HABIS (DETIK)"/>
 
-                        <Button
-                            Width="120"
-                            Height="42"
-                            Margin="0,0,10,0"
-                            Content="💾 Simpan"
-                            Style="{StaticResource PrimaryPillButton}"
-                            Command="{Binding SaveCommand}">
-                            <Button.Effect>
-                                <DropShadowEffect Color="#6366F1" Direction="270"
-                                                   ShadowDepth="0" BlurRadius="16" Opacity="0.5"/>
-                            </Button.Effect>
-                        </Button>
+                                        <TextBox
+                                                Margin="0,8,0,15"
+                                                Width="120"
+                                                Height="35"
+                                                HorizontalAlignment="Left"
+                                                Style="{StaticResource ModernTextBox}"
+                                                Text="{Binding WarningSeconds}"/>
 
-                        <Button
-                            Width="110"
-                            Height="42"
-                            Content="✖ Batal"
-                            Style="{StaticResource SecondaryPillButton}"
-                            Click="Cancel_Click"/>
+                                        <!-- Aktif -->
+                                        <Border Background="#1E1E33"
+                                                CornerRadius="10"
+                                                Padding="12,10"
+                                                Margin="0,0,0,26">
+                                                <CheckBox
+                                                        Content="Aktifkan pembatasan"
+                                                        Foreground="#E5E7EB"
+                                                        FontWeight="SemiBold"
+                                                        IsChecked="{Binding Enabled}"/>
+                                        </Border>
 
-                    </StackPanel>
+                                        <!-- Tombol -->
+                                        <StackPanel
+                                                Orientation="Horizontal"
+                                                HorizontalAlignment="Right">
 
-                </StackPanel>
+                                                <Button
+                                                        Width="120"
+                                                        Height="42"
+                                                        Margin="0,0,10,0"
+                                                        Content="💾 Simpan"
+                                                        Style="{StaticResource PrimaryPillButton}"
+                                                        Command="{Binding SaveCommand}">
+                                                        <Button.Effect>
+                                                                <DropShadowEffect Color="#6366F1"
+                                                                                  Direction="270"
+                                                                                  ShadowDepth="0"
+                                                                                  BlurRadius="16"
+                                                                                  Opacity="0.5"/>
+                                                        </Button.Effect>
+                                                </Button>
 
-            </Border>
+                                                <Button
+                                                        Width="110"
+                                                        Height="42"
+                                                        Content="✖ Batal"
+                                                        Style="{StaticResource SecondaryPillButton}"
+                                                        Click="Cancel_Click"/>
+
+                                        </StackPanel>
+
+                                </StackPanel>
+
+                        </Border>
+
+                </Grid>
 
         </Grid>
-
-    </Grid>
 
 </Window>

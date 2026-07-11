@@ -35,6 +35,7 @@ public static class DatabaseService
             ExePath TEXT NOT NULL,
             ProcessName TEXT NOT NULL,
             TimeLimit INTEGER NOT NULL,
+            WarningSeconds INTEGER NOT NULL DEFAULT 30,
             Enabled INTEGER NOT NULL
             );
 
@@ -64,28 +65,31 @@ public static class DatabaseService
         var command = connection.CreateCommand();
 
         command.CommandText = @"
-            INSERT INTO AppRules
-            (
-                Name,
-                ExePath,
-                ProcessName,
-                TimeLimit,
-                Enabled
-            )
-            VALUES
-            (
-                @Name,
-                @ExePath,
-                @ProcessName,
-                @TimeLimit,
-                @Enabled
-            );
-        ";
+        INSERT INTO AppRules
+        (
+            Name,
+            ExePath,
+            ProcessName,
+            TimeLimit,
+            WarningSeconds,
+            Enabled
+        )
+        VALUES
+        (
+            @Name,
+            @ExePath,
+            @ProcessName,
+            @TimeLimit,
+            @WarningSeconds,
+            @Enabled
+        );
+    ";
 
         command.Parameters.AddWithValue("@Name", rule.Name);
         command.Parameters.AddWithValue("@ExePath", rule.ExePath);
         command.Parameters.AddWithValue("@ProcessName", rule.ProcessName);
         command.Parameters.AddWithValue("@TimeLimit", rule.TimeLimit);
+        command.Parameters.AddWithValue("@WarningSeconds", rule.WarningSeconds);
         command.Parameters.AddWithValue("@Enabled", rule.Enabled ? 1 : 0);
 
         command.ExecuteNonQuery();
@@ -111,7 +115,8 @@ public static class DatabaseService
                 ExePath = reader.GetString(2),
                 ProcessName = reader.GetString(3),
                 TimeLimit = reader.GetInt32(4),
-                Enabled = reader.GetInt32(5) == 1
+                WarningSeconds = reader.GetInt32(5),
+                Enabled = reader.GetInt32(6) == 1
             });
         }
         return rules;
@@ -131,6 +136,7 @@ public static class DatabaseService
             ExePath = $exe,
             ProcessName = $process,
             TimeLimit = $limit,
+            WarningSeconds = $warning,
             Enabled = $enabled
         WHERE Id = $id;
     ";
@@ -140,6 +146,7 @@ public static class DatabaseService
         command.Parameters.AddWithValue("$exe", rule.ExePath);
         command.Parameters.AddWithValue("$process", rule.ProcessName);
         command.Parameters.AddWithValue("$limit", rule.TimeLimit);
+        command.Parameters.AddWithValue("$warning", rule.WarningSeconds);
         command.Parameters.AddWithValue("$enabled", rule.Enabled ? 1 : 0);
 
         command.ExecuteNonQuery();
