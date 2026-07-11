@@ -1,6 +1,6 @@
 # AppLimit
 
-A Windows desktop application to limit application usage time.
+AppLimit is a lightweight Windows desktop application that helps users control application usage time by monitoring running processes, showing customizable warnings, and automatically closing applications when their time limit is reached.
 
 ## Features
 
