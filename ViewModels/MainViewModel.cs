@@ -1,14 +1,14 @@
 using CommunityToolkit.Mvvm.ComponentModel;
-using PlayLimit.Models;
-using PlayLimit.Services;
-using PlayLimit.Views;
+using AppLimit.Models;
+using AppLimit.Services;
+using AppLimit.Views;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Windows;
 using System.Windows.Threading;
-using PlayLimit.Managers;
+using AppLimit.Managers;
 
-namespace PlayLimit.ViewModels;
+namespace AppLimit.ViewModels;
 
 public partial class MainViewModel : ObservableObject
 {
@@ -54,6 +54,15 @@ public partial class MainViewModel : ObservableObject
     }
 
     [RelayCommand]
+    private void ToggleRule(AppRule? rule)
+    {
+        if (rule == null)
+            return;
+
+        DatabaseService.UpdateRule(rule);
+    }
+
+    [RelayCommand]
     private void EditRule(AppRule? rule)
     {
         if (rule == null)
@@ -75,7 +84,7 @@ public partial class MainViewModel : ObservableObject
 
         if (MessageBox.Show(
             $"Hapus {rule.Name} ?",
-            "PlayLimit",
+            "AppLimit",
             MessageBoxButton.YesNo,
             MessageBoxImage.Question)
             != MessageBoxResult.Yes)

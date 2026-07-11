@@ -1,6 +1,8 @@
-namespace PlayLimit.Models;
+using CommunityToolkit.Mvvm.ComponentModel;
 
-public class AppRule
+namespace AppLimit.Models;
+
+public partial class AppRule : ObservableObject
 {
     public int Id { get; set; }
 
@@ -10,26 +12,39 @@ public class AppRule
 
     public string ProcessName { get; set; } = string.Empty;
 
-    public int UsageSeconds { get; set; }
+    [ObservableProperty]
+    private int usageSeconds;
 
     public int TimeLimit { get; set; }
 
-    public bool Enabled { get; set; }
+    [ObservableProperty]
+    private bool enabled;
+
+    [ObservableProperty]
+    public bool isRunning;
 
     public int RemainingMinutes =>
         Math.Max(0, TimeLimit - (UsageSeconds / 60));
 
-    public double Progress =>
-        TimeLimit == 0
-            ? 0
-            : (double)UsageSeconds / (TimeLimit * 60);
-
     public string UsageText =>
         TimeSpan.FromSeconds(UsageSeconds).ToString(@"hh\:mm\:ss");
 
-    public bool Warning5MinutesShown { get; set; } = false;
+    public string StatusText =>
+        isRunning ? "Apps Running" : "Apps Not Running";
 
-    public bool Warning1MinuteShown { get; set; } = false;
+    public string EnabledText =>
+    enabled ? "Pembatasan Aktif" : "Pembatasan Nonaktif";
 
-    public bool Closing { get; set; } = false;
+    // Digunakan untuk mendeteksi saat melewati threshold
+    public int PreviousRemaining { get; set; } = int.MaxValue;
+
+    public bool Warning5MinutesShown { get; set; }
+
+    public bool Warning1MinuteShown { get; set; }
+
+    public bool Closing { get; set; }
+    partial void OnEnabledChanged(bool value)
+    {
+        OnPropertyChanged(nameof(EnabledText));
+    }
 }

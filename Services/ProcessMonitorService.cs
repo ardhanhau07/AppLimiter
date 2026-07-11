@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-namespace PlayLimit.Services;
+namespace AppLimit.Services;
 
 public static class ProcessMonitorService
 {

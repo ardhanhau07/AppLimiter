@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Project\\PlayLimit\\PlayLimit.csproj": {}
+    "D:\\Project\\AppLimit\\AppLimit.csproj": {}
   },
   "projects": {
-    "D:\\Project\\PlayLimit\\PlayLimit.csproj": {
+    "D:\\Project\\AppLimit\\AppLimit.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\PlayLimit\\PlayLimit.csproj",
-        "projectName": "PlayLimit",
-        "projectPath": "D:\\Project\\PlayLimit\\PlayLimit.csproj",
+        "projectUniqueName": "D:\\Project\\AppLimit\\AppLimit.csproj",
+        "projectName": "AppLimit",
+        "projectPath": "D:\\Project\\AppLimit\\AppLimit.csproj",
         "packagesPath": "C:\\Users\\ardhanhau\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\PlayLimit\\obj\\",
+        "outputPath": "D:\\Project\\AppLimit\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ardhanhau\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -1,4 +1,4 @@
-namespace PlayLimit.Models;
+namespace AppLimit.Models;
 
 public class UsageLog
 {

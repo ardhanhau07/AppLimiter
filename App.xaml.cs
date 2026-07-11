@@ -1,7 +1,7 @@
 ﻿using System.Windows;
-using PlayLimit.Services;
+using AppLimit.Services;
 
-namespace PlayLimit;
+namespace AppLimit;
 
 public partial class App : Application
 {

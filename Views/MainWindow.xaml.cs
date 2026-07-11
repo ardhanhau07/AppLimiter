@@ -1,7 +1,7 @@
 using System.Windows;
-using PlayLimit.ViewModels;
+using AppLimit.ViewModels;
 
-namespace PlayLimit.Views;
+namespace AppLimit.Views;
 
 public partial class MainWindow : Window
 {

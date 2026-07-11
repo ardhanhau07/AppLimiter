@@ -1,6 +1,6 @@
 using Microsoft.Win32;
 
-namespace PlayLimit.Helpers;
+namespace AppLimit.Helpers;
 
 public static class FilePickerHelper
 {

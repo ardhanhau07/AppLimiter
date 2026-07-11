@@ -1,6 +1,6 @@
 using System.Windows;
 
-namespace PlayLimit.Services;
+namespace AppLimit.Services;
 
 public static class NotificationService
 {
@@ -8,7 +8,7 @@ public static class NotificationService
     {
         MessageBox.Show(
             message,
-            "PlayLimit",
+            "AppLimit",
             MessageBoxButton.OK,
             MessageBoxImage.Warning);
     }
@@ -17,7 +17,7 @@ public static class NotificationService
     {
         MessageBox.Show(
             message,
-            "PlayLimit",
+            "AppLimit",
             MessageBoxButton.OK,
             MessageBoxImage.Error);
     }

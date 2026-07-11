@@ -1,11 +1,11 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using PlayLimit.Models;
-using PlayLimit.Services;
-using PlayLimit.Helpers;
+using AppLimit.Models;
+using AppLimit.Services;
+using AppLimit.Helpers;
 using System.Windows;
 
-namespace PlayLimit.ViewModels;
+namespace AppLimit.ViewModels;
 
 public partial class RuleDialogViewModel : ObservableObject
 {

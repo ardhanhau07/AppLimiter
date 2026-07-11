@@ -1,13 +1,13 @@
 using Microsoft.Data.Sqlite;
-using PlayLimit.Models;
+using AppLimit.Models;
 using System.IO;
 
-namespace PlayLimit.Services;
+namespace AppLimit.Services;
 
 public static class DatabaseService
 {
     private static readonly string DbPath =
-        Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "playlimit.db");
+        Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "AppLimit.db");
 
     private static readonly string ConnectionString =
         $"Data Source={DbPath}";

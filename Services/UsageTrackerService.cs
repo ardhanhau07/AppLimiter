@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace PlayLimit.Services;
+namespace AppLimit.Services;
 
 public class UsageTrackerService
 {

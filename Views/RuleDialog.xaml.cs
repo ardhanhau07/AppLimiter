@@ -1,8 +1,8 @@
 using System.Windows;
-using PlayLimit.ViewModels;
-using PlayLimit.Models;
+using AppLimit.ViewModels;
+using AppLimit.Models;
 
-namespace PlayLimit.Views;
+namespace AppLimit.Views;
 
 public partial class RuleDialog : Window
 {

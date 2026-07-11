@@ -1,7 +1,7 @@
-using PlayLimit.Models;
-using PlayLimit.Services;
+using AppLimit.Models;
+using AppLimit.Services;
 
-namespace PlayLimit.Managers;
+namespace AppLimit.Managers;
 
 public class PlaySessionManager
 {
@@ -14,7 +14,10 @@ public class PlaySessionManager
             if (!rule.Enabled)
                 continue;
 
-            if (!ProcessMonitorService.IsRunning(rule.ProcessName))
+            rule.isRunning =
+                ProcessMonitorService.IsRunning(rule.ProcessName);
+
+            if (!rule.isRunning)
                 continue;
 
             _tracker.AddSecond(rule.ProcessName);
@@ -23,10 +26,15 @@ public class PlaySessionManager
                 _tracker.GetUsageSeconds(rule.ProcessName);
 
             int remaining =
-                (10) - rule.UsageSeconds;
+                (rule.TimeLimit * 60) - rule.UsageSeconds;
 
-            // Sisa 5 menit
-            if (remaining <= 300 && !rule.Warning5MinutesShown)
+            // ==========================
+            // Warning 5 menit
+            // ==========================
+            if (rule.TimeLimit > 5 &&
+                rule.PreviousRemaining > 300 &&
+                remaining <= 300 &&
+                !rule.Warning5MinutesShown)
             {
                 rule.Warning5MinutesShown = true;
 
@@ -34,8 +42,13 @@ public class PlaySessionManager
                     $"{rule.Name} akan ditutup dalam 5 menit.");
             }
 
-            // Sisa 1 menit
-            if (remaining <= 60 && !rule.Warning1MinuteShown)
+            // ==========================
+            // Warning 1 menit
+            // ==========================
+            if (rule.TimeLimit > 1 &&
+                rule.PreviousRemaining > 60 &&
+                remaining <= 60 &&
+                !rule.Warning1MinuteShown)
             {
                 rule.Warning1MinuteShown = true;
 
@@ -43,7 +56,12 @@ public class PlaySessionManager
                     $"{rule.Name} akan ditutup dalam 1 menit.");
             }
 
-            // Limit habis
+            // Simpan remaining sebelumnya
+            rule.PreviousRemaining = remaining;
+
+            // ==========================
+            // Force Close
+            // ==========================
             if (remaining <= 0 && !rule.Closing)
             {
                 rule.Closing = true;
@@ -61,15 +79,16 @@ public class PlaySessionManager
 
         ProcessKillerService.CloseProcess(rule.ProcessName);
 
-        // Reset waktu penggunaan
         _tracker.Reset(rule.ProcessName);
 
-        // Reset tampilan
         rule.UsageSeconds = 0;
+        rule.isRunning = false;
 
-        // Izinkan warning muncul lagi saat aplikasi dibuka ulang
         rule.Warning5MinutesShown = false;
         rule.Warning1MinuteShown = false;
         rule.Closing = false;
+
+        // Reset threshold
+        rule.PreviousRemaining = int.MaxValue;
     }
 }

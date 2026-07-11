@@ -1,7 +1,7 @@
 using System.Diagnostics;
 using System.IO;
 
-namespace PlayLimit.Helpers;
+namespace AppLimit.Helpers;
 
 public static class ExeHelper
 {
