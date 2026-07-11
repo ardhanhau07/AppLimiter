@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PlayLimit")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e57b6f19635f24f8d84fbd7bb6886fd037055d7d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+583f91a9ee04dfe3edf1db7b557595afd50f94d3")]
 [assembly: System.Reflection.AssemblyProductAttribute("PlayLimit")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PlayLimit")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

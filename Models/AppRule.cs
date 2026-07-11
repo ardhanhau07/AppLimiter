@@ -26,4 +26,10 @@ public class AppRule
 
     public string UsageText =>
         TimeSpan.FromSeconds(UsageSeconds).ToString(@"hh\:mm\:ss");
+
+    public bool Warning5MinutesShown { get; set; } = false;
+
+    public bool Warning1MinuteShown { get; set; } = false;
+
+    public bool Closing { get; set; } = false;
 }

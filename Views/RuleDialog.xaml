@@ -4,12 +4,13 @@
         Title="Tambah Program"
         Height="350"
         Width="500"
-        WindowStartupLocation="CenterOwner"
+        WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
 
     <Grid Margin="20">
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -55,28 +56,44 @@
             Content="Browse"
             Command="{Binding BrowseCommand}"/>
 
-        <!-- Limit -->
+        <!-- Process -->
         <TextBlock Grid.Row="2"
                    Grid.Column="0"
                    VerticalAlignment="Center"
-                   Text="Limit"/>
+                   Text="Process"/>
 
+        <TextBox Grid.Row="2"
+                 Grid.Column="1"
+                 Margin="5"
+                 IsReadOnly="True"
+                 Text="{Binding ProcessName}"/>
+
+        <!-- Limit -->
         <TextBox
-            Grid.Row="2"
+            Grid.Row="3"
             Grid.Column="1"
             Margin="5"
+            Width="120"
+            HorizontalAlignment="Left"
             Text="{Binding TimeLimit}"/>
+
+        <TextBlock
+            Grid.Row="3"
+            Grid.Column="2"
+            Margin="10,0,0,0"
+            VerticalAlignment="Center"
+            Text="menit"/>
 
         <!-- Aktif -->
         <CheckBox
-            Grid.Row="3"
+            Grid.Row="4"
             Grid.Column="1"
             Margin="5"
             Content="Aktif"
             IsChecked="{Binding Enabled}"/>
 
         <!-- Tombol -->
-        <StackPanel Grid.Row="4"
+        <StackPanel Grid.Row="5"
                     Grid.ColumnSpan="3"
                     Orientation="Horizontal"
                     HorizontalAlignment="Right">
@@ -88,7 +105,8 @@
 
             <Button Width="90"
                     Margin="5"
-                    Content="Batal"/>
+                    Content="Batal"
+                    Click="Cancel_Click"/>
 
         </StackPanel>
 

@@ -12,7 +12,8 @@
           "Hardcodet.NotifyIcon.Wpf": "2.0.1",
           "MaterialDesignColors": "5.3.2",
           "MaterialDesignThemes": "5.3.2",
-          "Microsoft.Data.Sqlite": "10.0.9"
+          "Microsoft.Data.Sqlite": "10.0.9",
+          "Microsoft.Toolkit.Uwp.Notifications": "7.1.3"
         },
         "runtime": {
           "PlayLimit.dll": {}
@@ -69,6 +70,14 @@
           "lib/net8.0/Microsoft.Data.Sqlite.dll": {
             "assemblyVersion": "10.0.9.0",
             "fileVersion": "10.0.926.27113"
+          }
+        }
+      },
+      "Microsoft.Toolkit.Uwp.Notifications/7.1.3": {
+        "runtime": {
+          "lib/net5.0/Microsoft.Toolkit.Uwp.Notifications.dll": {
+            "assemblyVersion": "7.1.0.0",
+            "fileVersion": "7.1.3.1"
           }
         }
       },
@@ -279,6 +288,13 @@
       "sha512": "sha512-iZrONyMKPjxfVZnUktqO30QjzNwAGH+AxM61s8lKQnVhgbQ3bn0hiXI129ZmVicEbIcwljyy2OVsIYUR51ZHKQ==",
       "path": "microsoft.data.sqlite.core/10.0.9",
       "hashPath": "microsoft.data.sqlite.core.10.0.9.nupkg.sha512"
+    },
+    "Microsoft.Toolkit.Uwp.Notifications/7.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-A1dglAzb24gjehmb7DwGd07mfyZ1gacAK7ObE0KwDlRc3mayH2QW7cSOy3TkkyELjLg19OQBuhPOj4SpXET9lg==",
+      "path": "microsoft.toolkit.uwp.notifications/7.1.3",
+      "hashPath": "microsoft.toolkit.uwp.notifications.7.1.3.nupkg.sha512"
     },
     "Microsoft.Xaml.Behaviors.Wpf/1.1.77": {
       "type": "package",

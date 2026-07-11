@@ -1,14 +1,15 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.Win32;
-using System.IO;
 using PlayLimit.Models;
 using PlayLimit.Services;
+using PlayLimit.Helpers;
+using System.Windows;
 
 namespace PlayLimit.ViewModels;
 
 public partial class RuleDialogViewModel : ObservableObject
 {
+    private readonly AppRule? editingRule;
     [ObservableProperty]
     private string name = "";
 
@@ -24,35 +25,71 @@ public partial class RuleDialogViewModel : ObservableObject
     [ObservableProperty]
     private bool enabled = true;
 
+    public RuleDialogViewModel(AppRule? rule = null)
+    {
+        editingRule = rule;
+
+        if (rule == null)
+            return;
+
+        Name = rule.Name;
+        ExePath = rule.ExePath;
+        ProcessName = rule.ProcessName;
+        TimeLimit = rule.TimeLimit;
+        Enabled = rule.Enabled;
+    }
+
     [RelayCommand]
     private void Browse()
     {
-        OpenFileDialog dialog = new();
+        string? file = FilePickerHelper.PickExe();
 
-        dialog.Filter = "Executable (*.exe)|*.exe";
+        if (file == null)
+            return;
 
-        if (dialog.ShowDialog() == true)
-        {
-            ExePath = dialog.FileName;
+        ExePath = file;
 
-            Name = Path.GetFileNameWithoutExtension(dialog.FileName);
+        Name = ExeHelper.GetAppName(file);
 
-            ProcessName = Path.GetFileNameWithoutExtension(dialog.FileName);
-        }
+        ProcessName = ExeHelper.GetProcessName(file);
     }
+
     [RelayCommand]
     private void Save()
     {
-        var rule = new AppRule
+        if (string.IsNullOrWhiteSpace(Name))
         {
-            Name = Name,
-            ExePath = ExePath,
-            ProcessName = ProcessName,
-            TimeLimit = TimeLimit,
-            Enabled = Enabled
-        };
+            NotificationService.ShowWarning("Silakan pilih aplikasi.");
+            return;
+        }
 
-        DatabaseService.AddRule(rule);
+        if (TimeLimit <= 0)
+        {
+            NotificationService.ShowWarning("Limit harus lebih dari 0.");
+            return;
+        }
+
+        if (editingRule == null)
+        {
+            DatabaseService.AddRule(new AppRule
+            {
+                Name = Name,
+                ExePath = ExePath,
+                ProcessName = ProcessName,
+                TimeLimit = TimeLimit,
+                Enabled = Enabled
+            });
+        }
+        else
+        {
+            editingRule.Name = Name;
+            editingRule.ExePath = ExePath;
+            editingRule.ProcessName = ProcessName;
+            editingRule.TimeLimit = TimeLimit;
+            editingRule.Enabled = Enabled;
+
+            DatabaseService.UpdateRule(editingRule);
+        }
 
         RequestClose?.Invoke();
     }

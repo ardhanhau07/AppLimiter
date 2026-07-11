@@ -116,4 +116,47 @@ public static class DatabaseService
         }
         return rules;
     }
+
+    public static void UpdateRule(AppRule rule)
+    {
+        using var connection = GetConnection();
+        connection.Open();
+
+        var command = connection.CreateCommand();
+
+        command.CommandText = @"
+        UPDATE AppRules
+        SET
+            Name = $name,
+            ExePath = $exe,
+            ProcessName = $process,
+            TimeLimit = $limit,
+            Enabled = $enabled
+        WHERE Id = $id;
+    ";
+
+        command.Parameters.AddWithValue("$id", rule.Id);
+        command.Parameters.AddWithValue("$name", rule.Name);
+        command.Parameters.AddWithValue("$exe", rule.ExePath);
+        command.Parameters.AddWithValue("$process", rule.ProcessName);
+        command.Parameters.AddWithValue("$limit", rule.TimeLimit);
+        command.Parameters.AddWithValue("$enabled", rule.Enabled ? 1 : 0);
+
+        command.ExecuteNonQuery();
+    }
+
+    public static void DeleteRule(int id)
+    {
+        using var connection = GetConnection();
+        connection.Open();
+
+        var command = connection.CreateCommand();
+
+        command.CommandText =
+            "DELETE FROM AppRules WHERE Id = $id";
+
+        command.Parameters.AddWithValue("$id", id);
+
+        command.ExecuteNonQuery();
+    }
 }

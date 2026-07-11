@@ -1,14 +1,16 @@
 using System.Windows;
 using PlayLimit.ViewModels;
+using PlayLimit.Models;
 
 namespace PlayLimit.Views;
 
 public partial class RuleDialog : Window
 {
-    public RuleDialog()
+    public RuleDialog(AppRule? rule = null)
     {
         InitializeComponent();
-        var vm = new RuleDialogViewModel();
+
+        var vm = new RuleDialogViewModel(rule);
 
         vm.RequestClose += () =>
         {
@@ -17,5 +19,11 @@ public partial class RuleDialog : Window
         };
 
         DataContext = vm;
+    }
+
+    private void Cancel_Click(object sender, RoutedEventArgs e)
+    {
+        DialogResult = false;
+        Close();
     }
 }

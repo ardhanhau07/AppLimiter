@@ -22,6 +22,14 @@ public class UsageTrackerService
         return 0;
     }
 
+    public void Reset(string processName)
+    {
+        if (_usageSeconds.ContainsKey(processName))
+        {
+            _usageSeconds.Remove(processName);
+        }
+    }
+
     public void Reset()
     {
         _usageSeconds.Clear();

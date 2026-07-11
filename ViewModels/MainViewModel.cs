@@ -12,7 +12,6 @@ namespace PlayLimit.ViewModels;
 
 public partial class MainViewModel : ObservableObject
 {
-
     private readonly DispatcherTimer _timer = new();
     private readonly UsageTrackerService _tracker = new();
     private readonly PlaySessionManager _manager = new();
@@ -28,9 +27,10 @@ public partial class MainViewModel : ObservableObject
         _timer.Start();
     }
 
-    private void Timer_Tick(object? sender, EventArgs e)
+    private async void Timer_Tick(object? sender, EventArgs e)
     {
-        _manager.Update(Rules);
+        await _manager.Update(Rules);
+
         Rules = new ObservableCollection<AppRule>(Rules);
     }
 
@@ -51,6 +51,39 @@ public partial class MainViewModel : ObservableObject
         {
             LoadRules();
         }
+    }
+
+    [RelayCommand]
+    private void EditRule(AppRule? rule)
+    {
+        if (rule == null)
+            return;
+
+        var dialog = new RuleDialog(rule);
+
+        if (dialog.ShowDialog() == true)
+        {
+            LoadRules();
+        }
+    }
+
+    [RelayCommand]
+    private void DeleteRule(AppRule? rule)
+    {
+        if (rule == null)
+            return;
+
+        if (MessageBox.Show(
+            $"Hapus {rule.Name} ?",
+            "PlayLimit",
+            MessageBoxButton.YesNo,
+            MessageBoxImage.Question)
+            != MessageBoxResult.Yes)
+            return;
+
+        DatabaseService.DeleteRule(rule.Id);
+
+        LoadRules();
     }
 
     [RelayCommand]

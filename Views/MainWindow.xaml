@@ -2,81 +2,145 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="PlayLimit"
-        Height="600"
-        Width="900"
+        Width="980"
+        Height="700"
+        MinWidth="900"
+        MinHeight="650"
+        Background="#1E1E1E"
+        Foreground="White"
         WindowStartupLocation="CenterScreen">
 
-    <Grid Margin="20">
+    <Grid Margin="20"
+          Background="#1E1E1E">
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <DataGrid Grid.Row="0"
-                  ItemsSource="{Binding Rules}"
-                  AutoGenerateColumns="False">
+        <Border Grid.Row="0"
+                Background="#4F46E5"
+                CornerRadius="16"
+                Padding="24"
+                Margin="0,0,0,20">
 
-            <DataGrid.Columns>
+            <StackPanel>
 
-                <DataGridTextColumn Header="Nama"
-                                    Binding="{Binding Name}"/>
+                <TextBlock
+                    Text="🎮 PlayLimit"
+                    FontSize="32"
+                    FontWeight="Bold"/>
 
-                <DataGridTextColumn Header="Process"
-                                    Binding="{Binding ProcessName}"/>
+                <TextBlock
+                    Margin="0,8,0,0"
+                    FontSize="15"
+                    Foreground="#E0E7FF"
+                    Text="Stay productive. Play smarter."/>
 
-                <DataGridTextColumn Header="Limit"
-                                    Binding="{Binding TimeLimit}"/>
+            </StackPanel>
 
-                <DataGridCheckBoxColumn Header="Aktif"
-                                        Binding="{Binding Enabled}"/>
+        </Border>
 
-                <DataGridTextColumn
-                    Header="Dipakai"
-                    Binding="{Binding UsageText}"/>
+        <ScrollViewer Grid.Row="1"
+                      VerticalScrollBarVisibility="Auto">
 
-                <DataGridTextColumn
-                    Header="Sisa"
-                    Binding="{Binding RemainingMinutes}"/>
+            <ItemsControl ItemsSource="{Binding Rules}">
 
-                <DataGridTemplateColumn Header="Progress">
+                <ItemsControl.ItemTemplate>
 
-                    <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
 
-                        <DataTemplate>
+                        <Border
+                            Background="#2D2D30"
+                            CornerRadius="12"
+                            Padding="18"
+                            Margin="0,0,0,15">
 
-                            <ProgressBar
-                                Height="18"
-                                Minimum="0"
-                                Maximum="1"
-                                Value="{Binding Progress, Mode=OneWay}"/>
+                            <Grid>
 
-                        </DataTemplate>
+                                <Grid.ColumnDefinitions>
 
-                    </DataGridTemplateColumn.CellTemplate>
+                                    <ColumnDefinition Width="*"/>
 
-                </DataGridTemplateColumn>
+                                    <ColumnDefinition Width="Auto"/>
 
-            </DataGrid.Columns>
+                                </Grid.ColumnDefinitions>
 
-        </DataGrid>
+                                <!-- Informasi -->
 
-        <StackPanel Grid.Row="1"
-                    Orientation="Horizontal"
-                    HorizontalAlignment="Right"
-                    Margin="0,10,0,0">
+                                <StackPanel>
 
-            <Button Width="100"
-                    Height="35"
-                    Content="Tambah"
-                    Command="{Binding AddRuleCommand}"/>
+                                    <TextBlock
+                                        FontSize="22"
+                                        FontWeight="Bold"
+                                        Text="{Binding Name}"/>
+
+                                    <TextBlock
+                                        Margin="0,5,0,15"
+                                        Foreground="#BDBDBD"
+                                        Text="{Binding ProcessName}"/>
+
+                                    <TextBlock
+                                        FontSize="15"
+                                        Text="{Binding TimeLimit,
+                                StringFormat=Limit : {0} menit}"/>
+
+                                    <TextBlock
+                                        Margin="0,6,0,0"
+                                        FontSize="15"
+                                        Text="{Binding UsageText,
+                                StringFormat=Digunakan : {0}}"/>
+
+                                </StackPanel>
+
+                                <!-- Tombol -->
+
+                                <StackPanel
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center">
+
+                                    <Button
+                                        Width="90"
+                                        Margin="0,0,0,8"
+                                        Content="✏ Edit"
+                                        Command="{Binding DataContext.EditRuleCommand,
+              RelativeSource={RelativeSource AncestorType=Window}}"
+                                        CommandParameter="{Binding}"/>
+
+                                    <Button
+                                        Width="90"
+                                        Content="🗑 Delete"
+                                        Command="{Binding DataContext.DeleteRuleCommand,
+              RelativeSource={RelativeSource AncestorType=Window}}"
+                                        CommandParameter="{Binding}"/>
+
+                                </StackPanel>
+
+                            </Grid>
+
+                        </Border>
+
+                    </DataTemplate>
+
+                </ItemsControl.ItemTemplate>
+
+            </ItemsControl>
+
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="2"
+                    Margin="0,20,0,0">
 
             <Button
-                Width="100"
-                Height="35"
-                Margin="5,0,0,0"
-                Content="Test"
-                Command="{Binding TestProcessCommand}"/>
+                Height="45"
+                FontSize="16"
+                FontWeight="SemiBold"
+                Background="#4F46E5"
+                Foreground="White"
+                BorderThickness="0"
+                Content="＋ Tambah Aplikasi"
+                Command="{Binding AddRuleCommand}"/>
 
         </StackPanel>
 
